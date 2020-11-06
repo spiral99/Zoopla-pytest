@@ -22,14 +22,14 @@ class ZooplaAgent:
 
     def agent_name(self):
         agent_name = self.browser.find_element(*self.AGENT)
-        heading = agent_name.get_attribute('h4')
+        heading = agent_name.get_attribute('ui-agent__name')
         print(heading)
         return heading
 
     def agent(self):
         action = ActionChains(self.browser)
-        dropdown = self.browser.find_element(*self.AGENT)
-        action.click(on_element=dropdown)
+        link = self.browser.find_element(*self.AGENT)
+        action.click(on_element=link)
         action.perform()
 
     def select_all_property(self):

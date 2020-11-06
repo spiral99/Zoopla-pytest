@@ -4,8 +4,8 @@ These tests cover DuckDuckGo searches.
 
 import pytest
 
-from pages.all_agent_property import ZooplaAgent
-from pages.agent_all_properties_page import ZooplaAllAgentsProperty
+from pages.agent_pick import ZooplaAgent
+from pages.agent_all_property_page import ZooplaAllAgentsProperty
 from pages.fifth_pick import ZooplaResultFifthPick
 from pages.result import ZooplaResultPage
 from pages.search import ZooplaSearchPage
@@ -32,9 +32,9 @@ def test_basic_zoopla_search(browser, phrase):
     assert phrase == result_page.search_input_value()
 
     # And the search result links pertain to "Bristol"
-    #titles = result_page.result_link_titles()
-    #matches = [t for t in titles if phrase.lower() in t.lower()]
-    #assert len(matches) > 0
+    titles = result_page.result_link_titles()
+    matches = [t for t in titles if phrase.lower() in t.lower()]
+    assert len(matches) > 0
 
     # And the search result title contains "Bristol"
     assert phrase in result_page.title()
@@ -66,5 +66,8 @@ def test_basic_zoopla_search(browser, phrase):
 
     assert e == f
 
-    # scrape data from all the agent pages
-    all_property.click_next()
+    # # scrape data from all the agent pages
+    # all_property.scrap()
+
+    # testing next button
+    all_property.scrap()
