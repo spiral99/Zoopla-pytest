@@ -29,7 +29,7 @@ class ZooplaAllAgentsProperty:
         return href
 
     def scrap(self):
-        sys.stdout = open("/home/brian/Desktop/Zoopla_test_Automation/myOutFile.txt", "w")
+        sys.stdout = open("/home/{USER}/Desktop/Zoopla_test_Automation/myOutFile.txt", "w")
 
         while True:
             next_page_btn = self.browser.find_elements(*self.NEXT)
