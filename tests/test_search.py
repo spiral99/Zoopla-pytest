@@ -1,7 +1,6 @@
 """
 These tests cover DuckDuckGo searches.
 """
-
 import pytest
 
 from pages.agent_pick import ZooplaAgent

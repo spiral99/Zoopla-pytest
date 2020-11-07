@@ -1,6 +1,6 @@
 """
-This module clicks on the 'See all property to rent from this agent',
-scrap text from the page.
+This module collecting the agent's name then clicks on the
+'See all property to rent from this agent' scrap text from the page.
 """
 
 from selenium.webdriver.common.by import By
@@ -21,9 +21,7 @@ class ZooplaAgent:
     # Interaction Methods
 
     def agent_name(self):
-        agent_name = self.browser.find_element(*self.AGENT)
-        heading = agent_name.get_attribute('ui-agent__name')
-        print(heading)
+        heading = self.browser.find_element(*self.AGENT).text
         return heading
 
     def agent(self):

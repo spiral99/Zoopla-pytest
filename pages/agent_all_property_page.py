@@ -23,9 +23,7 @@ class ZooplaAllAgentsProperty:
     # Interaction Methods
 
     def title(self):
-        agent_title = self.browser.find_element(*self.AGENT_TITLE)
-        href = agent_title.get_attribute('strong')
-        print(href)
+        href = self.browser.find_element(*self.AGENT_TITLE).text
         return href
 
     def scrap(self):
