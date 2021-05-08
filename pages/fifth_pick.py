@@ -8,12 +8,19 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 class ZooplaResultFifthPick:
-    # Locators
+    # URL
 
-    DROPDOWN_ELEMENT = (By.CSS_SELECTOR, ".listing-results-utils-sortby .js-redirects-to-option:nth-child(3)")
-    SELECT_HIGHEST_PRICE = (By.CSS_SELECTOR, ".listing-results-utils-sortby option:nth-child(2)")
-    CLICK_HIGHEST_PRICE = (By.CSS_SELECTOR, ".listing-results-utils-sortby option:nth-child(2)")
-    FIFTH_ITEM = (By.XPATH, "//li[6]/div/div[2]/a")
+    URL = 'https://www.zoopla.co.uk/for-sale/property/bristol/?q=Bristol&results_sort=newest_listings&search_source' \
+          '=for-sale '
+
+    # Locators
+    COOKIES_FORM = (By.CSS_SELECTOR, ".ui-cookie-consent-main")
+    ACCEPT_COOKIES = (By.CSS_SELECTOR, ".ui-cookie-accept-all-medium-large")
+    DROPDOWN_ELEMENT = (By.XPATH, "//select[@id='sort-order-dropdown']")
+    SELECT_HIGHEST_PRICE = (By.XPATH, "//select[@id='sort-order-dropdown']/option[text()='Highest price']")
+    CLICK_HIGHEST_PRICE = (By.XPATH, "//select[@id='sort-order-dropdown']/option[text()='Highest price']")
+    FIFTH_ITEM = (By.CSS_SELECTOR, "div:nth-of-type(5) > .css-1ub0h4c-Wrapper-ListingCard-StyledListingCard.e1mc0vr90"
+                                   ".e2uk8e10.earci3d1 .css-15tydk8-StyledLink-Link-FullCardLink.e2uk8e4.e33dvwd0")
 
     # Initializer
 
@@ -21,6 +28,16 @@ class ZooplaResultFifthPick:
         self.browser = browser
 
     # Interaction Methods
+
+    def load(self):
+        self.browser.get(self.URL)
+
+    def annoying(self):
+        if self.browser.find_element(*self.COOKIES_FORM):
+            cookie_accept = self.browser.find_element(*self.ACCEPT_COOKIES)
+            cookie_accept.click()
+        else:
+            raise Exception('still showing annoying cookies')
 
     def dropdown_click(self):
         action = ActionChains(self.browser)

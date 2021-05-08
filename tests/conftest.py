@@ -10,7 +10,7 @@ import selenium.webdriver
 @pytest.fixture
 def config():
     # Read the file
-    with open('config.json') as config_file:
+    with open('D:\\Pytest Automation Framework\\Zoopla_test_Automation\\config.json') as config_file:
         config = json.load(config_file)
 
     # Assert values are acceptable

@@ -13,7 +13,7 @@ class ZooplaSearchPage:
     URL = 'https://www.zoopla.co.uk/'
 
     # Locators
-
+    FOR_SALE = (By.XPATH, '//header/div[1]/div[1]/div[2]/nav[1]/ul[1]/li[2]/div[1]/a[1]')
     SEARCH_INPUT = (By.ID, 'search-input-location')
     COOKIES_FORM = (By.CSS_SELECTOR, ".ui-cookie-consent-main")
     ACCEPT_COOKIES = (By.CSS_SELECTOR, ".ui-cookie-accept-all-medium-large")
@@ -36,5 +36,7 @@ class ZooplaSearchPage:
             raise Exception('still showing annoying cookies')
 
     def search(self, phrase):
+        for_sale = self.browser.find_element(*self.FOR_SALE)
+        for_sale.click()
         search_input = self.browser.find_element(*self.SEARCH_INPUT)
         search_input.send_keys(phrase + Keys.RETURN)

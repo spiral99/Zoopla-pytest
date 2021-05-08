@@ -8,8 +8,13 @@ from selenium.webdriver.common.by import By
 
 
 class ZooplaAllAgentsProperty:
-    # Locators
+    # URL
 
+    URL = 'https://www.zoopla.co.uk/for-sale/branch/knight-frank-bristol-sales-bristol-115652/'
+
+    # Locators
+    COOKIES_FORM = (By.CSS_SELECTOR, ".ui-cookie-consent-main")
+    ACCEPT_COOKIES = (By.CSS_SELECTOR, ".ui-cookie-accept-all-medium-large")
     DATA = (By.ID, "main-content")
     NEXT = (By.LINK_TEXT, "Next")
     AGENT_TITLE = (By.XPATH, "//div[@id='breadcrumbs']/strong[1]")
@@ -22,12 +27,22 @@ class ZooplaAllAgentsProperty:
 
     # Interaction Methods
 
+    def load(self):
+        self.browser.get(self.URL)
+
+    def annoying(self):
+        if self.browser.find_element(*self.COOKIES_FORM):
+            cookie_accept = self.browser.find_element(*self.ACCEPT_COOKIES)
+            cookie_accept.click()
+        else:
+            raise Exception('still showing annoying cookies')
+
     def title(self):
         href = self.browser.find_element(*self.AGENT_TITLE).text
         return href
 
     def scrap(self):
-        sys.stdout = open("/home/{USER}/Desktop/Zoopla_test_Automation/myOutFile.txt", "w")
+        sys.stdout = open("D:\\Pytest Automation Framework\\Zoopla_test_Automation\\myOutFile.txt", "w")
 
         while True:
             next_page_btn = self.browser.find_elements(*self.NEXT)
